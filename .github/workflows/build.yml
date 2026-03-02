@@ -42,6 +42,9 @@ jobs:
 
       - uses: actions/checkout@v6
 
+      - name: Validate user-data
+        run: cloud-init schema -c user-data
+
       - name: Prepare workspace
         run: |
           mkdir -p vm/cache
