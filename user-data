@@ -9,19 +9,19 @@ users:
 ssh_pwauth: false
 disable_root: true
 package_update: false
-packages: []
-  # - apache2
-  # - apt-transport-https
-  # - binutils
-  # - ca-certificates
-  # - curl
-  # - fcgiwrap
-  # - git
-  # - gnupg-agent
-  # - podman
-  # - ruby
-  # - ruby-dev
-  # - ruby-json
-  # - software-properties-common
+# packages:
+#   - apache2
+#   - apt-transport-https
+#   - binutils
+#   - ca-certificates
+#   - curl
+#   - fcgiwrap
+#   - git
+#   - gnupg-agent
+#   - podman
+#   - ruby
+#   - ruby-dev
+#   - ruby-json
+#   - software-properties-common
 runcmd:
   - [ sh, -c, "echo cloud-init-ready > /var/tmp/cloud-init-ready" ]

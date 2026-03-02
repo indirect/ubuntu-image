@@ -8,7 +8,7 @@ defaults:
     shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
 
 jobs:
-  boot-and-ssh:
+  build-image:
     runs-on: ubuntu-latest
 
     env:
