@@ -28,18 +28,6 @@ jobs:
           command -v sg
           qemu-system-x86_64 --version
 
-      - name: Ensure KVM access via kvm group + sg
-        run: |
-          test -e /dev/kvm
-          ls -l /dev/kvm
-          id
-
-          # Adding the user to the kvm group won't affect the current shell session immediately.
-          sudo usermod -aG kvm "$USER" || true
-
-          # Use sg to run a command with the kvm group in CI.
-          sg kvm -c 'id && ls -l /dev/kvm'
-
       - uses: actions/checkout@v6
 
       - name: Validate user-data
