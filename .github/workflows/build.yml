@@ -43,6 +43,7 @@ jobs:
       - name: Prepare workspace
         run: |
           mkdir -p vm/cache
+          cp user-data meta-data vm/
 
       - name: Restore cached Ubuntu minimal image
         id: cache-ubuntu-img
@@ -62,31 +63,8 @@ jobs:
           cd vm
 
           ssh-keygen -t ed25519 -N "" -f id_ed25519 <<<y >/dev/null 2>&1
-
-          cat > user-data <<'EOF'
-          #cloud-config
-          users:
-            - name: ubuntu
-              sudo: ["ALL=(ALL) NOPASSWD:ALL"]
-              groups: [sudo]
-              shell: /bin/bash
-              ssh_authorized_keys:
-                - __SSH_PUBKEY__
-          ssh_pwauth: false
-          disable_root: true
-          package_update: false
-          packages: []
-          runcmd:
-            - [ sh, -c, "echo cloud-init-ready > /var/tmp/cloud-init-ready" ]
-          EOF
-
           PUBKEY="$(cat id_ed25519.pub)"
           sed -i "s|__SSH_PUBKEY__|${PUBKEY}|g" user-data
-
-          cat > meta-data <<'EOF'
-          instance-id: gh-actions-qemu
-          local-hostname: gh-actions-qemu
-          EOF
 
           cloud-localds -v seed.iso user-data meta-data
 
