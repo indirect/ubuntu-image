@@ -26,8 +26,8 @@ source "qemu" "ubuntu" {
   shutdown_command = "echo 'packer' | sudo -S shutdown -P now"
   ssh_username     = "ubuntu"
   vm_name          = "ubuntu-${var.ubuntu_version}.img"
-  memory = "2048M"
-  qemuargs = [
+  memory           = 2048
+  qemuargs         = [
     ["-smp", "2"],
     ["-serial", "mon:stdio"],
   ]
