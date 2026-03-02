@@ -40,6 +40,8 @@ jobs:
           # Use sg to run a command with the kvm group in CI.
           sg kvm -c 'id && ls -l /dev/kvm'
 
+      - uses: actions/checkout@v6
+
       - name: Prepare workspace
         run: |
           mkdir -p vm/cache
