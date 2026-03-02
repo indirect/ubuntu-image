@@ -1,4 +1,5 @@
 #cloud-config
+# https://docs.cloud-init.io/en/latest/reference/examples.html
 users:
   - name: ubuntu
     sudo: ["ALL=(ALL) NOPASSWD:ALL"]
