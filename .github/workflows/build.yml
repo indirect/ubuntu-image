@@ -158,11 +158,14 @@ jobs:
             fi
           fi
 
+      - name: Export single VM image
+        run: qemu-img convert -p vm/ubuntu-minimal.qcow2 -O qcow2 machine.qcow2
+
       - name: Upload machine image
         uses: actions/upload-artifact@v4
         with:
-          name: ubuntu-minimal.qcow2
-          path: vm/ubuntu-minimal.qcow2
+          name: machine.qcow2
+          path: machine.qcow2
 
       - name: Upload qemu.log (always)
         if: always()
